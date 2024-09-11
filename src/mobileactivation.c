@@ -247,6 +247,8 @@ mobileactivation_error_t mobileactivation_create_activation_info_with_session(mo
 
 	plist_t result = NULL;
 	plist_t data = plist_data_from_plist(handshake_response);
+        fprintf(stderr, "reach the session");
+	fprintf(stderr,data );
 	mobileactivation_error_t ret = mobileactivation_send_command(client, "CreateTunnel1ActivationInfoRequest", data, &result);
 	plist_free(data);
 	if (ret == MOBILEACTIVATION_E_SUCCESS) {
