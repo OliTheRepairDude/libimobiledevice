@@ -253,12 +253,15 @@ mobileactivation_error_t mobileactivation_create_activation_info_with_session(mo
 	mobileactivation_error_t ret = mobileactivation_send_command(client, "CreateTunnel1ActivationInfoRequest", data, &result);
 	plist_free(data);
 	if (ret == MOBILEACTIVATION_E_SUCCESS) {
+		fprintf(stderr, "Sucesss\n");
 		plist_t node = plist_dict_get_item(result, "Value");
+		fprintf(stderr, "%s\n" ,node);
 		if (!node) {
 			debug_info("ERROR: CreateTunnel1ActivationInfoRequest command returned success but has no value in reply");
 			fprintf(stderr, "Unknown error\n");
 			ret = MOBILEACTIVATION_E_UNKNOWN_ERROR;
 		} else {
+			fprintf(stderr, "Copying\n");
 			*info = plist_copy(node);
 		}
 	}
