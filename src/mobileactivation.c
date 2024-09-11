@@ -134,10 +134,12 @@ static mobileactivation_error_t mobileactivation_send_command_plist(mobileactiva
 	char* command_str = NULL;
 	if (cmd) {
 		plist_get_string_val(cmd, &command_str);
+		fprintf(stderr, "%s",&command_str);
 	}
-	if (!command_str)
+	if (!command_str){
+		fprintf(stderr, "no command");
 		return MOBILEACTIVATION_E_INVALID_ARG;
-
+	}
 	mobileactivation_error_t ret = MOBILEACTIVATION_E_UNKNOWN_ERROR;
 	*result = NULL;
 
