@@ -159,15 +159,17 @@ static mobileactivation_error_t mobileactivation_send_command_plist(mobileactiva
 
 static mobileactivation_error_t mobileactivation_send_command(mobileactivation_client_t client, const char* command, plist_t value, plist_t *result)
 {
-	if (!client || !command || !result)
+	if (!client || !command || !result){
+		fprintf(stderr, "null activation");
 		return MOBILEACTIVATION_E_INVALID_ARG;
-
+	}
 	mobileactivation_error_t ret = MOBILEACTIVATION_E_UNKNOWN_ERROR;
 	*result = NULL;
 
 	plist_t dict = plist_new_dict();
 	plist_dict_set_item(dict, "Command", plist_new_string(command));
 	if (value) {
+		fprintf(stderr, "there is a value");
 		plist_dict_set_item(dict, "Value", plist_copy(value));
 	}
 
