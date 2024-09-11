@@ -170,6 +170,7 @@ static mobileactivation_error_t mobileactivation_send_command(mobileactivation_c
 	plist_dict_set_item(dict, "Command", plist_new_string(command));
 	if (value) {
 		fprintf(stderr, "there is a value");
+		fprintf(stderr, "%s: \n", value);
 		plist_dict_set_item(dict, "Value", plist_copy(value));
 	}
 
